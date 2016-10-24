@@ -1,7 +1,7 @@
 package clientServeur;
 
-import hadl.Configuration;
+import hadl.ConfigurationComposant;
 
-public class ClientServeur  extends Configuration {
+public class ClientServeur  extends ConfigurationComposant {
 
 }
