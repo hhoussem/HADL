@@ -4,13 +4,13 @@ public class ElementArchitectural {
 	
 	private String nom;
 	
-	private Configuration configuration;
+	private IConfiguration configuration;
 
-	public Configuration getConfiguration() {
+	public IConfiguration getConfiguration() {
 		return configuration;
 	}
 
-	public void setConfiguration(Configuration configuration) {
+	public void setConfiguration(IConfiguration configuration) {
 		this.configuration = configuration;
 	}
 

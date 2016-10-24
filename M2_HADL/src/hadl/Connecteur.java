@@ -13,6 +13,7 @@ public class Connecteur extends ElementArchitectural {
 	
 	public Glue getGlue() {
 		return glue;
+
 	}
 
 	public void setGlue(Glue glue) {
