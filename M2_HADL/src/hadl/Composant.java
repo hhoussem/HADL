@@ -14,12 +14,14 @@ public class Composant extends ElementArchitectural {
 	}
 	public void setPortComposantRequis(PortComposantRequis portComposantRequis) {
 		this.portComposantRequis = portComposantRequis;
+		this.portComposantRequis.setComposant(this);
 	}
 	public PortComposantFourni getPortComposantFourni() {
 		return portComposantFourni;
 	}
 	public void setPortComposantFourni(PortComposantFourni portComposantFourni) {
 		this.portComposantFourni = portComposantFourni;
+		this.portComposantFourni.setComposant(this);
 	}
 	
 }

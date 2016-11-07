@@ -18,6 +18,7 @@ public class Connecteur extends ElementArchitectural {
 
 	public void setGlue(Glue glue) {
 		this.glue = glue;
+		this.glue.setConnecteur(this);
 	}
 
 	public RoleFourni getRolefournis() {
@@ -26,6 +27,7 @@ public class Connecteur extends ElementArchitectural {
 
 	public void setRolefournis(RoleFourni rolefournis) {
 		this.rolefournis = rolefournis;
+		this.rolefournis.setConnecteur(this);
 	}
 
 	public RoleRequis getRolerequis() {
@@ -34,6 +36,7 @@ public class Connecteur extends ElementArchitectural {
 
 	public void setRolerequis(RoleRequis rolerequis) {
 		this.rolerequis = rolerequis;
+		this.rolerequis.setConnecteur(this);
 	}
 
 }

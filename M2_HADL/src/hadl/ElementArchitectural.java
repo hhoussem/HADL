@@ -21,5 +21,9 @@ public class ElementArchitectural {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+	public void ecrireTrace(){
+		System.out.println("=> Passage à l'element architectural: "+getClass().getName());
+	}
 
 }

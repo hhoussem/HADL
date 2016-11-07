@@ -1,3 +1,5 @@
+import hadl.Composant;
+import clientServeur.BindingClientServeur;
 import clientServeur.ClientServeur;
 import clientServeur.composant.Client;
 import clientServeur.composant.Serveur;
@@ -6,6 +8,7 @@ import clientServeur.connecteur.RPCCalled;
 import clientServeur.connecteur.RPCCaller;
 import clientServeur.connecteur.RPCGlue;
 import clientServeur.port.PortClientRequis;
+import clientServeur.port.PortClientServeur;
 import clientServeur.port.ReceiveRequest;
 import clientServeur.port.SendRequest;
 
@@ -43,11 +46,22 @@ public class Main {
 		
 		
 		ClientServeur clientServeur = new ClientServeur();
-		clientServeur.getComposants().add(serveur);
-		serveur.setConfiguration(clientServeur);
+		
+		/*
+		 * Ajout des composants de la configuration ClientServeur
+		 */
+		clientServeur.setServeur(serveur);		
+		clientServeur.setClient(client);		
+		clientServeur.setRpc(rpc);
+		
+		PortClientServeur 	portClientServeur = new PortClientServeur();
+		clientServeur.setPortCltSrv(portClientServeur);
+		
+		BindingClientServeur bindingCltSrv = new BindingClientServeur();
+		clientServeur.setBindingCltSrv(bindingCltSrv);
 		
 		
-		
+		clientServeur.lancerCommunication("Message à transmetre!");
 		
 	}
 
