@@ -1,6 +1,8 @@
 package hadl;
 
-public class ElementArchitectural {
+import java.util.Observable;
+
+public class ElementArchitectural extends Observable {
 	
 	private String nom;
 	
@@ -10,8 +12,9 @@ public class ElementArchitectural {
 		return configuration;
 	}
 
-	public void setConfiguration(IConfiguration configuration) {
-		this.configuration = configuration;
+	public void setConfiguration(IConfiguration configuration) {		
+		this.configuration = configuration;		
+		this.addObserver(configuration);
 	}
 
 	public String getNom() {
@@ -24,6 +27,13 @@ public class ElementArchitectural {
 	
 	public void ecrireTrace(){
 		System.out.println("=> Passage à l'element architectural: "+getClass().getName());
+	}		
+	
+	public void envoyerMessage(String msg){
+		System.out.println("Le message est maintenant sur ==> "+getClass().getName());
+		System.out.println("Le message est  ==> "+msg);
+		setChanged();
+		notifyObservers(msg);
 	}
 
 }

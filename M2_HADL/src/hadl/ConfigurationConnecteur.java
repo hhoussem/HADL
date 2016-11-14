@@ -7,6 +7,7 @@ import hadl.port.PortConfigurationFourni;
 import hadl.port.PortConfigurationRequis;
 
 import java.util.List;
+import java.util.Observable;
 	public class ConfigurationConnecteur extends Connecteur implements IConfiguration{
 		
 		private List<Composant> composants;
@@ -53,6 +54,11 @@ import java.util.List;
 		}
 		public void setPortConfigurationFourni(PortConfigurationFourni portConfigurationFourni) {
 			this.portConfigurationFourni = portConfigurationFourni;
+		}
+		@Override
+		public void update(Observable o, Object arg) {
+			// TODO Auto-generated method stub
+			
 		}
 	}
 

@@ -1,4 +1,5 @@
-import hadl.Composant;
+import clientServeur.AttachementClient;
+import clientServeur.AttachementServeur;
 import clientServeur.BindingClientServeur;
 import clientServeur.ClientServeur;
 import clientServeur.composant.Client;
@@ -27,14 +28,14 @@ public class Main {
 		
 		Client client = new Client();
 		SendRequest sdRequest = new SendRequest();
-		client.setPortComposantFourni(sdRequest);
+		AttachementClient attachementClt = new AttachementClient();
+		
 		PortClientRequis prtCltRequis = new PortClientRequis();
 		client.setPortComposantRequis(prtCltRequis);
 		
 		
 		Serveur serveur = new Serveur();
 		ReceiveRequest rcRequest = new ReceiveRequest();
-		serveur.setPortComposantRequis(rcRequest);
 		
 		RPC rpc = new RPC();
 		RPCGlue rpcGlue = new RPCGlue();
@@ -44,6 +45,8 @@ public class Main {
 		RPCCaller rpcCaller = new RPCCaller();
 		rpc.setRolerequis(rpcCaller);
 		
+		AttachementServeur attachementServeur = new AttachementServeur();
+		
 		
 		ClientServeur clientServeur = new ClientServeur();
 		
@@ -51,8 +54,14 @@ public class Main {
 		 * Ajout des composants de la configuration ClientServeur
 		 */
 		clientServeur.setServeur(serveur);		
-		clientServeur.setClient(client);		
+		clientServeur.setClient(client);	
+		clientServeur.setSendRequest(sdRequest);
+		clientServeur.setAttachementClt(attachementClt);		
+		clientServeur.setRpcCaller(rpcCaller);
 		clientServeur.setRpc(rpc);
+		clientServeur.setRpcCalled(rpcCalled);
+		clientServeur.setAttechementSrv(attachementServeur);
+		clientServeur.setRcRequest(rcRequest);
 		
 		PortClientServeur 	portClientServeur = new PortClientServeur();
 		clientServeur.setPortCltSrv(portClientServeur);
@@ -61,7 +70,7 @@ public class Main {
 		clientServeur.setBindingCltSrv(bindingCltSrv);
 		
 		
-		clientServeur.lancerCommunication("Message à transmetre!");
+		client.envoyerMessage("Voici un message pour le serveur");
 		
 	}
 
