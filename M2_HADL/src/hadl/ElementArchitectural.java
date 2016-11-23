@@ -35,5 +35,12 @@ public class ElementArchitectural extends Observable {
 		setChanged();
 		notifyObservers(msg);
 	}
+	
+	public void envoyerMessage(Message msg){
+		System.out.println("Le message \" "+msg.getMsg()+"\"");
+		System.out.println("Le message est maintenant sur ==> "+getClass().getName());
+		setChanged();
+		notifyObservers(msg);
+	}
 
 }

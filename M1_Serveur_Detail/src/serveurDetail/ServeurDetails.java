@@ -1,6 +1,9 @@
 package serveurDetail;
 
 
+import java.util.Observable;
+
+
 import serveurDetail.attachement.AttachementCMgrDb;
 import serveurDetail.attachement.AttachementCMgrSec;
 import serveurDetail.attachement.AttachementDbCM;
@@ -29,6 +32,7 @@ import serveurDetail.role.SecurityQueryCalled;
 import serveurDetail.role.SecurityQueryCaller;
 import serveurDetail.composant.SecurityManager;
 import hadl.ConfigurationComposant;
+import hadl.Message;
 
 public class ServeurDetails extends ConfigurationComposant {
 
@@ -414,5 +418,33 @@ public class ServeurDetails extends ConfigurationComposant {
 		sqlRequestCaller.setConfiguration(this);
 	}
 	
+	public void update(Observable o, Object arg) {
+		if (arg != null) {
+			// from ConnectionManager to SecurityManager
+			Message message = (Message) arg;
+			if(message.getReceiver()instanceof ConnectionManager && 
+					message.getSender() instanceof  SecurityManager)
+			if (o instanceof ConnectionManager) {
+				attachementCMgrSec.envoyerMessage(msg);
+			} else if (o instanceof AttachementSecMgrCM) {
+				clearenceRequestCaller.envoyerMessage(msg);
+			} else if (o instanceof ClearenceRequestCaller) {
+				clearenceRequestGlue.envoyerMessage(msg);
+			} else if (o instanceof ClearenceRequestGlue) {
+				clearenceRequestCalled.envoyerMessage(msg);
+			} else if (o instanceof ClearenceRequestCalled){
+				attachementSecMgrCM.envoyerMessage(msg);
+			}else if (o instanceof AttachementSecMgrCM) {
+				securityAuth.envoyerMessage(msg);
+			} else if (o instanceof SecurityAuth) {
+				securityManager.envoyerMessage(msg);
+			} else if (o instanceof SecurityManager) {
+				System.out.println("LE MESSAGE EST ARRIVE!!! MERCI!");
+			}
+			
+			//from Sec
+			
+		}
+	}
 	
 }
