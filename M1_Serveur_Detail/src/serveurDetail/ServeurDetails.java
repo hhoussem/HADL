@@ -174,7 +174,7 @@ public class ServeurDetails extends ConfigurationComposant {
 	}
 	public void setDatabase(Database database) {
 		this.database = database;
-		this.getComposants().add(database);
+		this.getElementArchitecturaux().add(database);
 		database.setConfiguration(this);
 	}
 	
@@ -183,7 +183,7 @@ public class ServeurDetails extends ConfigurationComposant {
 	}
 	public void setConnectionManager(ConnectionManager connectionManager) {
 		this.connectionManager = connectionManager;
-		this.getComposants().add(connectionManager);
+		this.getElementArchitecturaux().add(connectionManager);
 		connectionManager.setConfiguration(this);
 	}
 	
@@ -192,7 +192,7 @@ public class ServeurDetails extends ConfigurationComposant {
 	}
 	public void setSecurityManager(SecurityManager securityManager) {
 		this.securityManager = securityManager;
-		this.getComposants().add(securityManager);
+		this.getElementArchitecturaux().add(securityManager);
 		securityManager.setConfiguration(this);
 	}
 	
@@ -201,7 +201,7 @@ public class ServeurDetails extends ConfigurationComposant {
 	}
 	public void setClearenceRequest(ClearenceRequest clearenceRequest) {
 		this.clearenceRequest = clearenceRequest;
-		this.getConnecteurs().add(clearenceRequest);
+		this.getElementArchitecturaux().add(clearenceRequest);
 		clearenceRequest.setConfiguration(this);
 
 	}
@@ -211,7 +211,7 @@ public class ServeurDetails extends ConfigurationComposant {
 	}
 	public void setSecurityQuery(SecurityQuery securityQuery) {
 		this.securityQuery = securityQuery;
-		this.getConnecteurs().add(securityQuery);
+		this.getElementArchitecturaux().add(securityQuery);
 		securityQuery.setConfiguration(this);
 	}
 	
@@ -220,7 +220,7 @@ public class ServeurDetails extends ConfigurationComposant {
 	}
 	public void setSqlRequest(SQLRequest sqlRequest) {
 		this.sqlRequest = sqlRequest;
-		this.getConnecteurs().add(sqlRequest);
+		this.getElementArchitecturaux().add(sqlRequest);
 		sqlRequest.setConfiguration(this);
 	}
 	
@@ -229,7 +229,7 @@ public class ServeurDetails extends ConfigurationComposant {
 	}
 	public void setReceiveRequest(ReceiveRequest receiveRequest) {
 		this.receiveRequest = receiveRequest;
-		this.setPortConfigurationRequis(receiveRequest);
+		this.getElementArchitecturaux().add(receiveRequest);
 		receiveRequest.setConfiguration(this);
 	}
 	

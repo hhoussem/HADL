@@ -38,7 +38,7 @@ public class ClientServeur extends ConfigurationComposant {
 
 	public void setServeur(Serveur serveur) {
 		this.serveur = serveur;
-		this.getComposants().add(serveur);
+		this.getElementArchitecturaux().add(serveur);
 		serveur.setConfiguration(this);
 	}
 
@@ -48,7 +48,7 @@ public class ClientServeur extends ConfigurationComposant {
 
 	public void setClient(Client client) {
 		this.client = client;
-		this.getComposants().add(client);
+		this.getElementArchitecturaux().add(client);
 		client.setConfiguration(this);
 	}
 
@@ -58,7 +58,7 @@ public class ClientServeur extends ConfigurationComposant {
 
 	public void setRpc(RPC rpc) {
 		this.rpc = rpc;
-		this.getConnecteurs().add(rpc);
+		this.getElementArchitecturaux().add(rpc);
 		rpc.setConfiguration(this);
 	}
 
@@ -68,7 +68,7 @@ public class ClientServeur extends ConfigurationComposant {
 
 	public void setPortCltSrv(PortClientServeur portCltSrv) {
 		this.portCltSrv = portCltSrv;
-		this.setPortConfigurationRequis(portCltSrv);
+		this.getElementArchitecturaux().add(portCltSrv);
 		portCltSrv.setConfiguration(this);
 	}
 
@@ -78,7 +78,7 @@ public class ClientServeur extends ConfigurationComposant {
 
 	public void setBindingCltSrv(BindingClientServeur bindingCltSrv) {
 		this.bindingCltSrv = bindingCltSrv;
-		this.getBinding().add(bindingCltSrv);
+		this.getElementArchitecturaux().add(bindingCltSrv);
 		this.bindingCltSrv.setConfiguration(this);
 	}
 
@@ -88,7 +88,7 @@ public class ClientServeur extends ConfigurationComposant {
 
 	public void setAttachementClt(AttachementClient attachementClt) {
 		this.attachementClt = attachementClt;
-		this.getAttachement().add(attachementClt);
+		this.getElementArchitecturaux().add(attachementClt);
 		this.attachementClt.setConfiguration(this);
 	}
 
@@ -98,7 +98,7 @@ public class ClientServeur extends ConfigurationComposant {
 
 	public void setAttechementSrv(AttachementServeur attechementSrv) {
 		this.attechementSrv = attechementSrv;
-		this.getAttachement().add(attechementSrv);
+		this.getElementArchitecturaux().add(attechementSrv);
 		this.attechementSrv.setConfiguration(this);
 	}
 

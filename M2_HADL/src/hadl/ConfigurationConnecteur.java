@@ -1,60 +1,20 @@
+package hadl;
 
-	package hadl;
-
-	import hadl.attachement.Attachement;
-import hadl.binding.Binding;
-import hadl.port.PortConfigurationFourni;
-import hadl.port.PortConfigurationRequis;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 	public class ConfigurationConnecteur extends Connecteur implements IConfiguration{
 		
-		private List<Composant> composants;
-		private List<Connecteur> connecteurs;
+		private List<ElementArchitectural> elementArchitecturaux = new ArrayList<ElementArchitectural>();
+		
+		public List<ElementArchitectural> getElementArchitecturaux() {
+			return elementArchitecturaux;
+		}
 
-		private List<Binding> binding;
-		private List<Attachement> attachement;
+		public void setElementArchitecturaux(List<ElementArchitectural> elementArchitecturaux) {
+			this.elementArchitecturaux = elementArchitecturaux;
+		}
 		
-		private PortConfigurationRequis portConfigurationRequis;	
-		private PortConfigurationFourni portConfigurationFourni;
-		
-		public List<Composant> getComposants() {
-			return composants;
-		}
-		public void setComposants(List<Composant> composants) {
-			this.composants = composants;
-		}
-		public List<Connecteur> getConnecteurs() {
-			return connecteurs;
-		}
-		public void setConnecteurs(List<Connecteur> connecteurs) {
-			this.connecteurs = connecteurs;
-		}
-		public List<Attachement> getAttachement() {
-			return attachement;
-		}
-		public void setAttachement(List<Attachement> attachement) {
-			this.attachement = attachement;
-		}
-		public List<Binding> getBinding() {
-			return binding;
-		}
-		public void setBinding(List<Binding> binding) {
-			this.binding = binding;
-		}
-		public PortConfigurationRequis getPortConfigurationRequis() {
-			return portConfigurationRequis;
-		}
-		public void setPortConfigurationRequis(PortConfigurationRequis portConfigurationRequis) {
-			this.portConfigurationRequis = portConfigurationRequis;
-		}
-		public PortConfigurationFourni getPortConfigurationFourni() {
-			return portConfigurationFourni;
-		}
-		public void setPortConfigurationFourni(PortConfigurationFourni portConfigurationFourni) {
-			this.portConfigurationFourni = portConfigurationFourni;
-		}
 		@Override
 		public void update(Observable o, Object arg) {
 			// TODO Auto-generated method stub
