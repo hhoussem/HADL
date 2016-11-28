@@ -269,7 +269,7 @@ public class ClientServeur extends ConfigurationComposant {
 			} 	else if (o instanceof BindingServeur) {
 				this.externalSocket.envoyerMessage(msg);
 			} 	else if (o instanceof ExternalSocket) {
-				this.serveur.getConnectionManager().envoyerMessage(new Message(this.serveur.getSecurityManager(), this.serveur.getConnectionManager(), msg));
+				this.serveur.getConnectionManager().envoyerMessage(new Message(this.serveur.getConnectionManager(), this.serveur.getSecurityManager(), msg));
 			}
 		}
 	}
