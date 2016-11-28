@@ -1,8 +1,6 @@
 package serveurDetail;
 
-
 import java.util.Observable;
-
 
 import serveurDetail.attachement.AttachementCMgrDb;
 import serveurDetail.attachement.AttachementCMgrSec;
@@ -37,7 +35,6 @@ import hadl.port.PortConfigurationFourni;
 
 public class ServeurDetails extends ConfigurationComposant {
 
-
 	private Database database;
 	private ConnectionManager connectionManager;
 	private SecurityManager securityManager;
@@ -45,7 +42,7 @@ public class ServeurDetails extends ConfigurationComposant {
 	private SecurityQuery securityQuery;
 	private SQLRequest sqlRequest;
 	private ReceiveRequest receiveRequest;
-	
+
 	private ClearenceRequestGlue clearenceRequestGlue;
 	private SecurityQueryGlue securityQueryGlue;
 	private SQLRequestGlue sqlRequestGlue;
@@ -69,361 +66,389 @@ public class ServeurDetails extends ConfigurationComposant {
 	private SecurityQueryCaller securityQueryCaller;
 	private SQLRequestCalled sqlRequestCalled;
 	private SQLRequestCaller sqlRequestCaller;
-	
+
 	public ServeurDetails() {
 		super();
 		this.database = new Database();
 		this.setDatabase(database);
-		
+
 		this.connectionManager = new ConnectionManager();
 		this.setConnectionManager(connectionManager);
-		
+
 		this.securityManager = new SecurityManager();
 		this.setSecurityManager(securityManager);
-		
+
 		this.clearenceRequest = new ClearenceRequest();
 		this.setClearenceRequest(clearenceRequest);
-		
+
 		this.securityQuery = new SecurityQuery();
 		this.setSecurityQuery(securityQuery);
-		
+
 		this.sqlRequest = new SQLRequest();
 		this.setSqlRequest(sqlRequest);
-		
+
+		this.sqlRequestCaller = new SQLRequestCaller();
+		this.setSqlRequestCaller(sqlRequestCaller);
+
 		this.receiveRequest = new ReceiveRequest();
 		this.setReceiveRequest(receiveRequest);
-		
+
 		this.clearenceRequestGlue = new ClearenceRequestGlue();
 		this.setClearenceRequestGlue(clearenceRequestGlue);
-		
+
 		this.securityQueryGlue = new SecurityQueryGlue();
 		this.setSecurityQueryGlue(securityQueryGlue);
-		
+
 		this.sqlRequestGlue = new SQLRequestGlue();
 		this.setSqlRequestGlue(sqlRequestGlue);
-		
 
 		this.attachementCMgrDb = new AttachementCMgrDb();
 		this.setAttachementCMgrDb(attachementCMgrDb);
-		
+
 		this.attachementCMgrSec = new AttachementCMgrSec();
 		this.setAttachementCMgrSec(attachementCMgrSec);
-		
+
 		this.attachementDbCM = new AttachementDbCM();
 		this.setAttachementDbCM(attachementDbCM);
-		
 
 		this.attachementDbSec = new AttachementDbSec();
 		this.setAttachementDbSec(attachementDbSec);
-		
 
 		this.attachementSecMgrCM = new AttachementSecMgrCM();
 		this.setAttachementSecMgrCM(attachementSecMgrCM);
-		
 
 		this.attachementSecMgrDb = new AttachementSecMgrDb();
 		this.setAttachementSecMgrDb(attachementSecMgrDb);
-		
+
 		this.bindingServeur = new BindingServeur();
 		this.setBindingServeur(bindingServeur);
-		
+
 		this.cQuery = new CQuery();
 		this.setcQuery(cQuery);
-		
+
 		this.dbQuery = new DBQuery();
 		this.setDbQuery(dbQuery);
-		
+
 		this.externalSocket = new ExternalSocket();
 		this.setExternalSocket(externalSocket);
-		
+
 		this.queryInt = new QueryInt();
 		this.setQueryInt(queryInt);
-		
-		this.securityAuth= new SecurityAuth();
+
+		this.securityAuth = new SecurityAuth();
 		this.setSecurityAuth(securityAuth);
-		
+
 		this.securityCheck = new SecurityCheck();
 		this.setSecurityCheck(securityCheck);
-		
+
 		this.securityMgmt = new SecurityMgmt();
 		this.setSecurityMgmt(securityMgmt);
-		
+
 		this.clearenceRequestCalled = new ClearenceRequestCalled();
 		this.setClearenceRequestCalled(clearenceRequestCalled);
-		
+
 		this.clearenceRequestCaller = new ClearenceRequestCaller();
 		this.setClearenceRequestCaller(clearenceRequestCaller);
-		
+
 		this.securityQueryCalled = new SecurityQueryCalled();
 		this.setSecurityQueryCalled(securityQueryCalled);
-		
-		this.securityQueryCaller= new SecurityQueryCaller();
-		this.setSecurityQueryCaller(securityQueryCaller);
-		
-		this.sqlRequestCalled = new SQLRequestCalled();
-		this.setSqlRequestCalled(sqlRequestCalled);
-		
+
 		this.securityQueryCaller = new SecurityQueryCaller();
 		this.setSecurityQueryCaller(securityQueryCaller);
-		
-		
+
+		this.sqlRequestCalled = new SQLRequestCalled();
+		this.setSqlRequestCalled(sqlRequestCalled);
+
+		this.securityQueryCaller = new SecurityQueryCaller();
+		this.setSecurityQueryCaller(securityQueryCaller);
+
 	}
-	
+
 	public Database getDatabase() {
 		return database;
 	}
+
 	public void setDatabase(Database database) {
 		this.database = database;
 		this.getElementArchitecturaux().add(database);
 		database.setConfiguration(this);
 	}
-	
+
 	public ConnectionManager getConnectionManager() {
 		return connectionManager;
 	}
+
 	public void setConnectionManager(ConnectionManager connectionManager) {
 		this.connectionManager = connectionManager;
 		this.getElementArchitecturaux().add(connectionManager);
 		connectionManager.setConfiguration(this);
 	}
-	
+
 	public SecurityManager getSecurityManager() {
 		return securityManager;
 	}
+
 	public void setSecurityManager(SecurityManager securityManager) {
 		this.securityManager = securityManager;
 		this.getElementArchitecturaux().add(securityManager);
 		securityManager.setConfiguration(this);
 	}
-	
+
 	public ClearenceRequest getClearenceRequest() {
 		return clearenceRequest;
 	}
+
 	public void setClearenceRequest(ClearenceRequest clearenceRequest) {
 		this.clearenceRequest = clearenceRequest;
 		this.getElementArchitecturaux().add(clearenceRequest);
 		clearenceRequest.setConfiguration(this);
 
 	}
-	
+
 	public SecurityQuery getSecurityQuery() {
 		return securityQuery;
 	}
+
 	public void setSecurityQuery(SecurityQuery securityQuery) {
 		this.securityQuery = securityQuery;
 		this.getElementArchitecturaux().add(securityQuery);
 		securityQuery.setConfiguration(this);
 	}
-	
+
 	public SQLRequest getSqlRequest() {
 		return sqlRequest;
 	}
+
 	public void setSqlRequest(SQLRequest sqlRequest) {
 		this.sqlRequest = sqlRequest;
 		this.getElementArchitecturaux().add(sqlRequest);
 		sqlRequest.setConfiguration(this);
 	}
-	
+
 	public ReceiveRequest getReceiveRequest() {
 		return receiveRequest;
 	}
+
 	public void setReceiveRequest(ReceiveRequest receiveRequest) {
 		this.receiveRequest = receiveRequest;
 		this.getElementArchitecturaux().add(receiveRequest);
 		receiveRequest.setConfiguration(this);
 	}
-	
+
 	public ClearenceRequestGlue getClearenceRequestGlue() {
 		return clearenceRequestGlue;
 	}
+
 	public void setClearenceRequestGlue(ClearenceRequestGlue clearenceRequestGlue) {
 		this.clearenceRequestGlue = clearenceRequestGlue;
 		clearenceRequestGlue.setConfiguration(this);
 
 	}
-	
+
 	public SecurityQueryGlue getSecurityQueryGlue() {
 		return securityQueryGlue;
 	}
+
 	public void setSecurityQueryGlue(SecurityQueryGlue securityQueryGlue) {
 		this.securityQueryGlue = securityQueryGlue;
 		securityQueryGlue.setConfiguration(this);
 
 	}
-	
+
 	public SQLRequestGlue getSqlRequestGlue() {
 		return sqlRequestGlue;
 	}
+
 	public void setSqlRequestGlue(SQLRequestGlue sqlRequestGlue) {
 		this.sqlRequestGlue = sqlRequestGlue;
 		sqlRequestGlue.setConfiguration(this);
 	}
-	
+
 	public AttachementCMgrDb getAttachementCMgrDb() {
 		return attachementCMgrDb;
 	}
+
 	public void setAttachementCMgrDb(AttachementCMgrDb attachementCMgrDb) {
 		this.attachementCMgrDb = attachementCMgrDb;
 		attachementCMgrDb.setConfiguration(this);
 	}
-	
+
 	public AttachementCMgrSec getAttachementCMgrSec() {
 		return attachementCMgrSec;
 	}
+
 	public void setAttachementCMgrSec(AttachementCMgrSec attachementCMgrSec) {
 		this.attachementCMgrSec = attachementCMgrSec;
 		attachementCMgrSec.setConfiguration(this);
 	}
-	
+
 	public AttachementDbCM getAttachementDbCM() {
 		return attachementDbCM;
 	}
+
 	public void setAttachementDbCM(AttachementDbCM attachementDbCM) {
 		this.attachementDbCM = attachementDbCM;
 		attachementDbCM.setConfiguration(this);
 	}
-	
+
 	public AttachementDbSec getAttachementDbSec() {
 		return attachementDbSec;
 	}
+
 	public void setAttachementDbSec(AttachementDbSec attachementDbSec) {
 		this.attachementDbSec = attachementDbSec;
 		attachementDbSec.setConfiguration(this);
 	}
-	
+
 	public AttachementSecMgrCM getAttachementSecMgrCM() {
 		return attachementSecMgrCM;
 	}
+
 	public void setAttachementSecMgrCM(AttachementSecMgrCM attachementSecMgrCM) {
 		this.attachementSecMgrCM = attachementSecMgrCM;
 		attachementSecMgrCM.setConfiguration(this);
 	}
-	
+
 	public AttachementSecMgrDb getAttachementSecMgrDb() {
 		return attachementSecMgrDb;
 	}
+
 	public void setAttachementSecMgrDb(AttachementSecMgrDb attachementSecMgrDb) {
 		this.attachementSecMgrDb = attachementSecMgrDb;
 		attachementSecMgrDb.setConfiguration(this);
 	}
-	
+
 	public CQuery getcQuery() {
 		return cQuery;
 	}
+
 	public void setcQuery(CQuery cQuery) {
 		this.cQuery = cQuery;
 		cQuery.setConfiguration(this);
 	}
-	
+
 	public ExternalSocket getExternalSocket() {
 		return externalSocket;
 	}
+
 	public void setExternalSocket(ExternalSocket externalSocket) {
 		this.externalSocket = externalSocket;
 		externalSocket.setConfiguration(this);
 	}
-	
+
 	public BindingServeur getBindingServeur() {
 		return bindingServeur;
 	}
+
 	public void setBindingServeur(BindingServeur bindingServeur) {
 		this.bindingServeur = bindingServeur;
 		bindingServeur.setConfiguration(this);
 	}
-	
+
 	public DBQuery getDbQuery() {
 		return dbQuery;
 	}
+
 	public void setDbQuery(DBQuery dbQuery) {
 		this.dbQuery = dbQuery;
 		dbQuery.setConfiguration(this);
 	}
-	
+
 	public QueryInt getQueryInt() {
 		return queryInt;
 	}
+
 	public void setQueryInt(QueryInt queryInt) {
 		this.queryInt = queryInt;
 		queryInt.setConfiguration(this);
 	}
-	
+
 	public SecurityAuth getSecurityAuth() {
 		return securityAuth;
 	}
+
 	public void setSecurityAuth(SecurityAuth securityAuth) {
 		this.securityAuth = securityAuth;
 		securityAuth.setConfiguration(this);
 	}
-	
+
 	public SecurityCheck getSecurityCheck() {
 		return securityCheck;
 	}
+
 	public void setSecurityCheck(SecurityCheck securityCheck) {
 		this.securityCheck = securityCheck;
 		securityCheck.setConfiguration(this);
 	}
-	
+
 	public SecurityMgmt getSecurityMgmt() {
 		return securityMgmt;
 	}
+
 	public void setSecurityMgmt(SecurityMgmt securityMgmt) {
 		this.securityMgmt = securityMgmt;
 		securityMgmt.setConfiguration(this);
 	}
-	
+
 	public ClearenceRequestCalled getClearenceRequestCalled() {
 		return clearenceRequestCalled;
 	}
+
 	public void setClearenceRequestCalled(ClearenceRequestCalled clearenceRequestCalled) {
 		this.clearenceRequestCalled = clearenceRequestCalled;
 		clearenceRequestCalled.setConfiguration(this);
 	}
-	
+
 	public ClearenceRequestCaller getClearenceRequestCaller() {
 		return clearenceRequestCaller;
 	}
+
 	public void setClearenceRequestCaller(ClearenceRequestCaller clearenceRequestCaller) {
 		this.clearenceRequestCaller = clearenceRequestCaller;
 		clearenceRequestCaller.setConfiguration(this);
 	}
-	
+
 	public SecurityQueryCalled getSecurityQueryCalled() {
 		return securityQueryCalled;
 	}
+
 	public void setSecurityQueryCalled(SecurityQueryCalled securityQueryCalled) {
 		this.securityQueryCalled = securityQueryCalled;
 		securityQueryCalled.setConfiguration(this);
 	}
-	
+
 	public SecurityQueryCaller getSecurityQueryCaller() {
 		return securityQueryCaller;
 	}
+
 	public void setSecurityQueryCaller(SecurityQueryCaller securityQueryCaller) {
 		this.securityQueryCaller = securityQueryCaller;
 		securityQueryCaller.setConfiguration(this);
 	}
-	
+
 	public SQLRequestCalled getSqlRequestCalled() {
 		return sqlRequestCalled;
 	}
+
 	public void setSqlRequestCalled(SQLRequestCalled sqlRequestCalled) {
 		this.sqlRequestCalled = sqlRequestCalled;
 		sqlRequestCalled.setConfiguration(this);
 	}
-	
+
 	public SQLRequestCaller getSqlRequestCaller() {
 		return sqlRequestCaller;
 	}
+
 	public void setSqlRequestCaller(SQLRequestCaller sqlRequestCaller) {
 		this.sqlRequestCaller = sqlRequestCaller;
 		sqlRequestCaller.setConfiguration(this);
 	}
-	
+
 	public void update(Observable o, Object arg) {
 		if (arg != null) {
 			// from ConnectionManager to SecurityManager
 			Message message = (Message) arg;
-			if (message.getReceiver() instanceof ConnectionManager && message.getSender() instanceof SecurityManager) {
+			if (message.getSender() instanceof ConnectionManager && message.getReceiver() instanceof SecurityManager) {
 				if (o instanceof ConnectionManager) {
 					securityCheck.envoyerMessage(message);
 				} else if (o instanceof SecurityCheck) {
@@ -444,9 +469,51 @@ public class ServeurDetails extends ConfigurationComposant {
 					System.out.println("LE MESSAGE EST ARRIVE!!! MERCI!");
 				}
 			}
-			
-			
+			if (message.getSender() instanceof ConnectionManager && message.getReceiver() instanceof Database) {
+				if (o instanceof ConnectionManager) {
+					dbQuery.envoyerMessage(message);
+				} else if (o instanceof DBQuery) {
+					attachementCMgrDb.envoyerMessage(message);
+				} else if (o instanceof AttachementCMgrDb) {
+					sqlRequestCaller.envoyerMessage(message);
+				} else if (o instanceof SQLRequestCaller) {
+					sqlRequestGlue.envoyerMessage(message);
+				} else if (o instanceof SQLRequestGlue) {
+					sqlRequestCalled.envoyerMessage(message);
+				} else if (o instanceof SQLRequestCalled) {
+					attachementDbCM.envoyerMessage(message);
+				} else if (o instanceof AttachementDbCM) {
+					queryInt.envoyerMessage(message);
+				} else if (o instanceof QueryInt) {
+					database.envoyerMessage(message);
+				} else if (o instanceof Database) {
+					System.out.println("LE MESSAGE EST ARRIVE!!! MERCI!");
+				}
+			}
+
+			if (message.getSender() instanceof Database && message.getReceiver() instanceof ConnectionManager) {
+				if (o instanceof Database) {
+					queryInt.envoyerMessage(message);
+				} else if (o instanceof QueryInt) {
+					attachementDbCM.envoyerMessage(message);
+				} else if (o instanceof AttachementDbCM) {
+					sqlRequestCalled.envoyerMessage(message);
+				} else if (o instanceof SQLRequestCalled) {
+					sqlRequestGlue.envoyerMessage(message);
+				} else if (o instanceof SQLRequestGlue) {
+					sqlRequestCaller.envoyerMessage(message);
+				} else if (o instanceof SQLRequestCaller) {
+					attachementCMgrDb.envoyerMessage(message);
+				} else if (o instanceof AttachementCMgrDb) {
+					dbQuery.envoyerMessage(message);
+				} else if (o instanceof DBQuery) {
+					connectionManager.envoyerMessage(message);
+				} else if (o instanceof ConnectionManager) {
+					System.out.println("LE MESSAGE EST ARRIVE!!! MERCI!");
+				}
+			}
+
 		}
-	
+
 	}
 }
