@@ -14,10 +14,14 @@ import clientServeur.port.ReceiveRequest;
 import clientServeur.port.SendRequest;
 import hadl.Composant;
 import hadl.ConfigurationComposant;
+import hadl.Message;
+import serveurDetail.ServeurDetails;
+import serveurDetail.binding.BindingServeur;
+import serveurDetail.port.ExternalSocket;
 
 public class ClientServeur extends ConfigurationComposant {
 
-	private Serveur serveur;
+	private ServeurDetails serveur;
 	private Client client;
 	private RPC rpc;
 	private PortClientServeur portCltSrv;
@@ -31,6 +35,9 @@ public class ClientServeur extends ConfigurationComposant {
 	private RPCGlue rpcGlue;
 	private RPCCalled rpcCalled;
 	private RPCCaller rpcCaller;
+	
+	private BindingServeur bindingServeur;
+	private ExternalSocket externalSocket;
 
 	public ClientServeur()
 	{
@@ -52,7 +59,7 @@ public class ClientServeur extends ConfigurationComposant {
 		this.setPortComposantRequis(prtCltRequis);
 		
 		
-		this.serveur = new Serveur();
+		this.serveur = new ServeurDetails();
 		this.setServeur(serveur);
 		
 		this.rcRequest = new ReceiveRequest();
@@ -78,7 +85,11 @@ public class ClientServeur extends ConfigurationComposant {
 		this.bindingCltSrv = new BindingClientServeur();
 		this.setBindingCltSrv(bindingCltSrv);
 		
+		this.bindingServeur = new BindingServeur();
+		this.setBindingServeur(bindingServeur);
 		
+		this.externalSocket = new ExternalSocket();
+		this.setExternalSocket(externalSocket);
 		
 		
 	}
@@ -87,7 +98,7 @@ public class ClientServeur extends ConfigurationComposant {
 		return serveur;
 	}
 
-	public void setServeur(Serveur serveur) {
+	public void setServeur(ServeurDetails serveur) {
 		this.serveur = serveur;
 		this.getElementArchitecturaux().add(serveur);
 		serveur.setConfiguration(this);
@@ -206,6 +217,24 @@ public class ClientServeur extends ConfigurationComposant {
 		this.rpcCaller = rpcCaller;
 		this.rpcCaller.setConfiguration(this);
 	}
+	
+	public ExternalSocket getExternalSocket() {
+		return externalSocket;
+	}
+	
+	public void setExternalSocket(ExternalSocket externalSocket) {
+		this.externalSocket = externalSocket;
+		externalSocket.setConfiguration(this);
+	}
+	
+	public BindingServeur getBindingServeur() {
+		return bindingServeur;
+	}
+	
+	public void setBindingServeur(BindingServeur bindingServeur) {
+		this.bindingServeur = bindingServeur;
+		bindingServeur.setConfiguration(this);
+	}
 
 	public void lancerCommunication(String msg) {
 		System.out
@@ -234,8 +263,13 @@ public class ClientServeur extends ConfigurationComposant {
 				rcRequest.envoyerMessage(msg);
 			} else if (o instanceof ReceiveRequest) {
 				serveur.envoyerMessage(msg);
-			} else if (o instanceof Serveur) {
-				System.out.println("LE MESSAGE EST ARRIVE!!! MERCI!");
+			} else if (o instanceof ServeurDetails) {
+				System.out.println("LE MESSAGE EST RECU PAR LE SERVEUR! IL VA ETRE PASSE AU CONNECTION MANAGER MAINTENANT!");
+				this.bindingServeur.envoyerMessage(msg);	
+			} 	else if (o instanceof BindingServeur) {
+				this.externalSocket.envoyerMessage(msg);
+			} 	else if (o instanceof ExternalSocket) {
+				this.serveur.getConnectionManager().envoyerMessage(new Message(this.serveur.getSecurityManager(), this.serveur.getConnectionManager(), msg));
 			}
 		}
 	}
