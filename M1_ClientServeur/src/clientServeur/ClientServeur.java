@@ -32,6 +32,57 @@ public class ClientServeur extends ConfigurationComposant {
 	private RPCCalled rpcCalled;
 	private RPCCaller rpcCaller;
 
+	public ClientServeur()
+	{
+		super();
+		
+		this.client = new Client();
+		this.setClient(client);
+		
+		this.sendRequest = new SendRequest();
+		this.setSendRequest(sendRequest);
+		
+		this.attachementClt = new AttachementClient();
+		this.setAttachementClt(attachementClt);
+		
+		this.attechementSrv = new AttachementServeur();
+		this.setAttechementSrv(attechementSrv);
+		
+		this.prtCltRequis = new PortClientRequis();
+		this.setPortComposantRequis(prtCltRequis);
+		
+		
+		this.serveur = new Serveur();
+		this.setServeur(serveur);
+		
+		this.rcRequest = new ReceiveRequest();
+		this.setRcRequest(rcRequest);
+		
+		this.rpc = new RPC();
+		this.setRpc(rpc);
+		
+		this.rpcGlue = new RPCGlue();
+		this.setRpcGlue(rpcGlue);
+		
+		this.rpcCalled = new RPCCalled();
+		this.setRpcCalled(rpcCalled);
+		rpc.setRolefournis(rpcCalled);
+		
+		this.rpcCaller = new RPCCaller();
+		this.setRpcCaller(rpcCaller);
+		rpc.setRolerequis(rpcCaller);
+		
+		this.portCltSrv = new PortClientServeur();
+		this.setPortCltSrv(portCltSrv);
+		
+		this.bindingCltSrv = new BindingClientServeur();
+		this.setBindingCltSrv(bindingCltSrv);
+		
+		
+		
+		
+	}
+	
 	public Composant getServeur() {
 		return serveur;
 	}

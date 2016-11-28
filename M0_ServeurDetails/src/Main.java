@@ -15,7 +15,6 @@ public class Main {
 	
 	public void run(){
 		ServeurDetails serveurDetails = new ServeurDetails();
-		
 	
 		Message msg = new Message(serveurDetails.getSecurityManager(),serveurDetails.getConnectionManager(), "test");
 		serveurDetails.getConnectionManager().envoyerMessage(msg);
